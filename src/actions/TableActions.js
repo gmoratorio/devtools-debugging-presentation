@@ -1,7 +1,6 @@
-import axios from 'axios';
 import _ from "lodash";
 
-import {talksUrl} from '../constants';
+import {fetchTalks} from '../services/talkService';
 
 import {
     RESULTS_SORTED,
@@ -16,19 +15,22 @@ export const loadTalks = () => {
     return async (dispatch) => {
 
         try {
-            let talksResponse = await axios.get(talksUrl);
+            let talksResponse = await fetchTalks();
             let talks = talksResponse.data.data;
 
-            const preparedData = _.map(talks, talk => {
-                const preparedPost = _.reduce(talk, (acc, value, key) => {
-                    const deserializedKey = _.camelCase(key);
+            const preparedData = _(talks)
+                .reject(talk => !talk || !talk.title)
+                .map((talk, index) => {
+                    const preparedPost = _.reduce(talk, (acc, value, key) => {
+                        const deserializedKey = _.camelCase(key);
 
-                    acc[deserializedKey] = value;
-                    return acc;
-                }, {});
+                        acc[deserializedKey] = value;
+                        return acc;
+                    }, {});
 
-                return preparedPost;
-            });
+                    return preparedPost;
+                })
+                .valueOf();
 
             dispatch({
                 type: TALKS_READY,
