@@ -3,26 +3,26 @@ import _ from "lodash";
 
 import DataRowLarge from './DataRowLarge';
 
-const Table = ({displayedPosts, calendarStrings, onClickTalkRow}) => {
+const Table = ({displayedTalks, calendarStrings, onClickTalkRow}) => {
 
-        return _.map(displayedPosts, (talk, index) => {
-            const {type, title, firstName, lastName, description} = talk;
+    return _.map(displayedTalks, (talk, index) => {
+        const {type, title, firstName, lastName, description} = talk;
 
-            const shortenedDescription = `${description.slice(0, 60)}...`;
-            const presentorName = `${firstName.slice(0, 1)}. ${lastName}`;
+        const shortenedDescription = !!description ? `${description.slice(0, 60)}...` : '';
+        const presentorName = !!firstName ? `${firstName.slice(0, 1)}. ${lastName}` : lastName;
 
-            return (
-                <DataRowLarge
-                    key={index}
-                    index={index}
-                    type={type}
-                    title={title}
-                    presentor={presentorName}
-                    description={shortenedDescription}
-                    onClick={onClickTalkRow}
-                />
-            );
-        })
+        return (
+            <DataRowLarge
+                key={index}
+                index={index}
+                type={type}
+                title={title}
+                presentor={presentorName}
+                description={shortenedDescription}
+                onClick={onClickTalkRow}
+            />
+        );
+    })
 
 };
 

@@ -13,7 +13,7 @@ import {SORT_STYLE, TALK_SPECS} from '../constants';
 
 const INITIAL_STATE = {
     talks: [],
-    displayedPosts: [],
+    displayedTalks: [],
     sortKey: TALK_SPECS.CREATED_AT,
     sortStyle: SORT_STYLE.ASC,
     searchText: '',
@@ -79,12 +79,12 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 talks: payload.talks,
-                displayedPosts: initialSortedPosts,
+                displayedTalks: initialSortedPosts,
                 talksReady: true
             };
 
         case RESULTS_SORTED:
-            const {sortKey, sortStyle, displayedPosts} = state;
+            const {sortKey, sortStyle, displayedTalks} = state;
             const {newSortKey} = payload;
 
             let nextSortStyle = SORT_STYLE.ASC;
@@ -92,13 +92,13 @@ export default (state = INITIAL_STATE, action) => {
                 nextSortStyle = sortStyle === SORT_STYLE.ASC ? SORT_STYLE.DESC : SORT_STYLE.ASC;
             }
 
-            let sortedPosts = sortPosts({talks: displayedPosts, sortKey: newSortKey, sortOrder: nextSortStyle});
+            let sortedPosts = sortPosts({talks: displayedTalks, sortKey: newSortKey, sortOrder: nextSortStyle});
 
             return {
                 ...state,
                 sortKey: newSortKey,
                 sortStyle: nextSortStyle,
-                displayedPosts: sortedPosts,
+                displayedTalks: sortedPosts,
                 currentPage: 1,
                 currentIndex: 0
             };
@@ -116,7 +116,7 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 searchText: newSearchText,
-                displayedPosts: filteredPosts,
+                displayedTalks: filteredPosts,
                 currentPage: 1,
                 currentIndex: 0
             };

@@ -9,10 +9,10 @@ import DataRowHeader from './DataRowHeader';
 import Table from './Table';
 import TalkPagination from './TalkPagination';
 
-const TalkListTable = ({talksReady, onClickSort, sortStyle, sortStyles, sortKey, talkSpecs, headerSpecs, talkTextTemplates, headerTemplates, calendarStrings, displayedPosts, onClickTalkRow, searchText, onSearchInputChange, pageSize, currentPage, currentIndex, onClickPage}) => {
+const TalkListTable = ({talksReady, onClickSort, sortStyle, sortStyles, sortKey, talkSpecs, headerSpecs, talkTextTemplates, headerTemplates, calendarStrings, displayedTalks, onClickTalkRow, searchText, onSearchInputChange, pageSize, currentPage, currentIndex, onClickPage}) => {
 
-    const paginatedPosts = _.chunk(displayedPosts, pageSize);
-    const currentPageOfPosts = paginatedPosts[currentIndex];
+    const paginatedPosts = _.chunk(displayedTalks, pageSize);
+    const currentPageOfTalks = paginatedPosts[currentIndex];
 
     if (!talksReady) {
         return (
@@ -43,13 +43,13 @@ const TalkListTable = ({talksReady, onClickSort, sortStyle, sortStyles, sortKey,
             />
 
             <Table
-                displayedPosts={currentPageOfPosts}
+                displayedTalks={currentPageOfTalks}
                 calendarStrings={calendarStrings}
                 onClickTalkRow={onClickTalkRow}
             />
 
             <TalkPagination
-                totalDisplayPostCount={displayedPosts.length}
+                totalDisplayPostCount={displayedTalks.length}
                 pageSize={pageSize}
                 onClickPage={onClickPage}
                 currentPage={currentPage}

@@ -34,10 +34,10 @@ class DevToolsIndex extends Component {
     };
 
     onClickTalkRow = (index) => {
-        const {displayedPosts, currentIndex} = this.props;
+        const {displayedTalks, currentIndex} = this.props;
         const trueIndex = (PAGE_SIZE * currentIndex) + index;
 
-        const selectedTalk = displayedPosts[trueIndex];
+        const selectedTalk = displayedTalks[trueIndex];
 
         this.props.updateSelectedTalk({selectedTalk});
     };
@@ -47,7 +47,7 @@ class DevToolsIndex extends Component {
     };
 
     render() {
-        const {talksReady, sortStyle, sortKey, displayedPosts, searchText, currentPage, currentIndex} = this.props;
+        const {talksReady, sortStyle, sortKey, displayedTalks, searchText, currentPage, currentIndex} = this.props;
 
         return (
             <div className="container main-container">
@@ -66,7 +66,7 @@ class DevToolsIndex extends Component {
                     headerTemplates={headers}
                     talkTextTemplates={talks}
                     calendarStrings={CALENDAR_STRINGS}
-                    displayedPosts={displayedPosts}
+                    displayedTalks={displayedTalks}
                     onClickTalkRow={this.onClickTalkRow}
                     searchText={searchText}
                     onSearchInputChange={this.onSearchInputChange}
@@ -83,9 +83,9 @@ class DevToolsIndex extends Component {
 
 function mapStateToProps(state) {
     const {windowWidth, windowHeight} = state.bootstrap;
-    const {sortStyle, sortKey, displayedPosts, searchText, talksReady, currentPage, currentIndex} = state.table;
+    const {sortStyle, sortKey, displayedTalks, searchText, talksReady, currentPage, currentIndex} = state.table;
 
-    return {windowWidth, windowHeight, displayedPosts, sortStyle, sortKey, searchText, talksReady, currentPage, currentIndex};
+    return {windowWidth, windowHeight, displayedTalks, sortStyle, sortKey, searchText, talksReady, currentPage, currentIndex};
 }
 
 export default connect(mapStateToProps, {
