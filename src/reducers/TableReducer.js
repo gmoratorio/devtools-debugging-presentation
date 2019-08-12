@@ -4,8 +4,8 @@ import {
     RESULTS_SORTED,
     TALKS_READY,
     UPDATED_SEARCH_TEXT,
-    VEHICLE_SELECTED,
-    CLEAR_SELECTED_VEHICLE,
+    TALK_SELECTED,
+    CLEAR_SELECTED_TALK,
     PAGE_CHANGE
 } from '../actions/types';
 
@@ -121,11 +121,11 @@ export default (state = INITIAL_STATE, action) => {
                 currentIndex: 0
             };
 
-        case VEHICLE_SELECTED:
+        case TALK_SELECTED:
             const {selectedTalk} = payload;
             return {...state, selectedTalk};
 
-        case CLEAR_SELECTED_VEHICLE:
+        case CLEAR_SELECTED_TALK:
             return {...state, selectedTalk: {}};
 
         case PAGE_CHANGE:

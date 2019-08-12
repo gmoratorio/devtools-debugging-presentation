@@ -1,16 +1,16 @@
 import axios from 'axios';
 import _ from "lodash";
 
+import {talksUrl} from '../constants';
+
 import {
     RESULTS_SORTED,
     TALKS_READY,
     UPDATED_SEARCH_TEXT,
-    VEHICLE_SELECTED,
-    CLEAR_SELECTED_VEHICLE,
+    TALK_SELECTED,
+    CLEAR_SELECTED_TALK,
     PAGE_CHANGE
 } from './types';
-
-const talksUrl = `https://develop-denver.herokuapp.com/events`;
 
 export const loadTalks = () => {
     return async (dispatch) => {
@@ -63,7 +63,7 @@ export const updateSearchValue = ({newSearchText}) => {
 export const updateSelectedTalk = ({selectedTalk}) => {
 
     return {
-        type: VEHICLE_SELECTED,
+        type: TALK_SELECTED,
         payload: {selectedTalk}
     }
 
@@ -71,7 +71,7 @@ export const updateSelectedTalk = ({selectedTalk}) => {
 
 export const clearSelectedTalk = () => {
     return {
-        type: CLEAR_SELECTED_VEHICLE
+        type: CLEAR_SELECTED_TALK
     }
 };
 

@@ -26,3 +26,5 @@ export const CALENDAR_STRINGS = {
 };
 
 export const PAGE_SIZE = 200;
+
+export const talksUrl = `https://develop-denver.herokuapp.com/events`;

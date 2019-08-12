@@ -7,26 +7,6 @@ const TalkPagination = ({totalDisplayPostCount, pageSize, currentIndex, currentP
 
     const pageCount = Math.ceil(totalDisplayPostCount / pageSize);
 
-    const returnPrevPageAndIndex = () => {
-        const prevPage = (currentPage - 1) > 0 ? currentPage - 1 : 1;
-        const prevIndex = prevPage - 1;
-
-        return ({
-            page: prevPage,
-            index: prevIndex
-        });
-    };
-
-    const returnNextPageAndIndex = () => {
-        const nextPage = (currentPage + 1) <= pageCount ? currentPage + 1 : currentPage;
-        const nextIndex = nextPage - 1;
-
-        return ({
-            page: nextPage,
-            index: nextIndex
-        })
-    };
-
     const renderPaginationItems = () => {
 
         return _.times(pageCount, index => {
