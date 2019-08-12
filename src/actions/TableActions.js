@@ -24,7 +24,6 @@ export const loadTalks = () => {
             let talks = talksResponse.data.data;
 
             const preparedData = _(talks)
-                .reject(talk => !talk || !talk.title)
                 .map((talk, index) => {
                     const preparedPost = _.reduce(talk, (acc, value, key) => {
                         const deserializedKey = _.camelCase(key);
