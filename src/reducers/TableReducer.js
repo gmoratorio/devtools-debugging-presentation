@@ -3,6 +3,7 @@ import _ from 'lodash';
 import {
     RESULTS_SORTED,
     TALKS_READY,
+    TALKS_LOADING,
     UPDATED_SEARCH_TEXT,
     TALK_SELECTED,
     CLEAR_SELECTED_TALK,
@@ -68,6 +69,9 @@ export default (state = INITIAL_STATE, action) => {
     const {type, payload} = action;
 
     switch (type) {
+        case TALKS_LOADING:
+            return {...state, talksReady: false};
+
         case TALKS_READY:
             let initialSortedPosts = filterPosts({
                 talks: payload.talks,

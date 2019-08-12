@@ -4,7 +4,14 @@ import {connect} from 'react-redux';
 import './components.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
-import {updateWindowDimensions, sortDataBy, loadTalks, updateSearchValue, updateSelectedTalk, changePage} from '../actions';
+import {
+    updateWindowDimensions,
+    sortDataBy,
+    loadTalks,
+    updateSearchValue,
+    updateSelectedTalk,
+    changePage
+} from '../actions';
 
 import {TALK_SPECS, SORT_STYLE, CALENDAR_STRINGS, PAGE_SIZE, HEADER_STRINGS} from '../constants';
 import {talks, headers} from '../locale.en';
@@ -19,6 +26,9 @@ class DevToolsIndex extends Component {
 
     componentDidMount() {
         this.props.updateWindowDimensions();
+        setTimeout(() => {
+            this.props.loadTalks();
+        }, 1000);
 
         window.addEventListener('resize', this.props.updateWindowDimensions);
     }
@@ -42,7 +52,7 @@ class DevToolsIndex extends Component {
         this.props.updateSelectedTalk({selectedTalk});
     };
 
-    onClickPage = ({page, index}) =>{
+    onClickPage = ({page, index}) => {
         this.props.changePage({page, index})
     };
 
@@ -85,7 +95,17 @@ function mapStateToProps(state) {
     const {windowWidth, windowHeight} = state.bootstrap;
     const {sortStyle, sortKey, displayedTalks, searchText, talksReady, currentPage, currentIndex} = state.table;
 
-    return {windowWidth, windowHeight, displayedTalks, sortStyle, sortKey, searchText, talksReady, currentPage, currentIndex};
+    return {
+        windowWidth,
+        windowHeight,
+        displayedTalks,
+        sortStyle,
+        sortKey,
+        searchText,
+        talksReady,
+        currentPage,
+        currentIndex
+    };
 }
 
 export default connect(mapStateToProps, {

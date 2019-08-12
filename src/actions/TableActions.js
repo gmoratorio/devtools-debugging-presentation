@@ -5,6 +5,7 @@ import {fetchTalks} from '../services/talkService';
 import {
     RESULTS_SORTED,
     TALKS_READY,
+    TALKS_LOADING,
     UPDATED_SEARCH_TEXT,
     TALK_SELECTED,
     CLEAR_SELECTED_TALK,
@@ -13,6 +14,10 @@ import {
 
 export const loadTalks = () => {
     return async (dispatch) => {
+
+        dispatch({
+            type: TALKS_LOADING
+        });
 
         try {
             let talksResponse = await fetchTalks();
