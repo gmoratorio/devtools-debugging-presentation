@@ -47,7 +47,7 @@ const DataRowHeader = ({onClickSort, talkSpecs, talkTextTemplates, sortKey, sort
             <Col className={'col-md-2'}>
                 <Button
                     onClick={() => {
-                        onClickSort(talkSpecs.PRESENTOR)
+                        onClickSort(talkSpecs.LAST_NAME)
                     }}
                     className={'table-header-title'}
                 >
