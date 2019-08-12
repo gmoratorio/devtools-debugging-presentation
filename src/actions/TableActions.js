@@ -21,7 +21,7 @@ export const loadTalks = () => {
 
         try {
             let talksResponse = await fetchTalks();
-            let talks = talksResponse.data.data;
+            let talks = talksResponse.data;
 
             const preparedData = _(talks)
                 .map((talk, index) => {
