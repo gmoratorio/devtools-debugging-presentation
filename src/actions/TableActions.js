@@ -23,13 +23,17 @@ export const loadTalks = () => {
             let talksResponse = await fetchTalks();
             let talks = talksResponse.data;
 
-            const preparedData = _(talks)
-                .map((talk, index) => {
-                    const preparedTalk = prepareTalkForDisplay(talk);
+            let preparedData = [];
 
-                    return preparedTalk;
-                })
-                .valueOf();
+            if (_.isArray(talks)) {
+                preparedData = _(talks)
+                    .map((talk, index) => {
+                        const preparedTalk = prepareTalkForDisplay(talk);
+
+                        return preparedTalk;
+                    })
+                    .valueOf();
+            }
 
             dispatch({
                 type: TALKS_READY,
