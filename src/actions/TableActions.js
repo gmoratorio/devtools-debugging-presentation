@@ -25,14 +25,9 @@ export const loadTalks = () => {
 
             const preparedData = _(talks)
                 .map((talk, index) => {
-                    const preparedPost = _.reduce(talk, (acc, value, key) => {
-                        const deserializedKey = _.camelCase(key);
+                    const preparedTalk = prepareTalkForDisplay(talk);
 
-                        acc[deserializedKey] = value;
-                        return acc;
-                    }, {});
-
-                    return preparedPost;
+                    return preparedTalk;
                 })
                 .valueOf();
 
@@ -86,4 +81,13 @@ export const changePage = ({page, index}) => {
         type: PAGE_CHANGE,
         payload: {page, index}
     }
+};
+
+const prepareTalkForDisplay = (talk) => {
+    return _.reduce(talk, (acc, value, key) => {
+        const deserializedKey = _.camelCase(key);
+
+        acc[deserializedKey] = value;
+        return acc;
+    }, {});
 };
