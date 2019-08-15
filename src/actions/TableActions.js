@@ -88,7 +88,7 @@ export const changePage = ({page, index}) => {
 };
 
 const prepareTalkForDisplay = (talk) => {
-    const preparedTalks = _.reduce(talk, (acc, value, key) => {
+    const preparedTalk = _.reduce(talk, (acc, value, key) => {
         const deserializedKey = _.camelCase(key);
 
         acc[deserializedKey] = value;
